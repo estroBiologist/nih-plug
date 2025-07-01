@@ -103,7 +103,7 @@ impl EguiState {
             size: AtomicCell::new((width, height)),
             requested_size: Default::default(),
             open: AtomicBool::new(false),
-            window: None,
+            window: None.into(),
         })
     }
 
@@ -127,3 +127,6 @@ impl EguiState {
         self.requested_size.store(Some(new_size));
     }
 }
+
+unsafe impl Send for EguiState {}
+unsafe impl Sync for EguiState {}
