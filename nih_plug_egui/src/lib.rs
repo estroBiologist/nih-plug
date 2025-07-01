@@ -107,7 +107,7 @@ impl EguiState {
         })
     }
 
-    pub fn handle(&self) -> Option<&RawWindowHandle> {
+    pub fn handle(&self) -> Option<RawWindowHandle> {
         self.window.load()
     }
 
