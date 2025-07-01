@@ -10,6 +10,7 @@ use egui::Context;
 use nih_plug::params::persist::PersistentField;
 use nih_plug::prelude::{Editor, ParamSetter};
 use parking_lot::RwLock;
+use raw_window_handle::RawWindowHandle;
 use serde::{Deserialize, Serialize};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
@@ -75,6 +76,10 @@ pub struct EguiState {
     /// Whether the editor's window is currently open.
     #[serde(skip)]
     open: AtomicBool,
+
+    // hack to get the raw window handle in SFLT. my fork my rules
+    #[serde(skip)]
+    window: AtomicCell<Option<RawWindowHandle>>
 }
 
 impl<'a> PersistentField<'a, EguiState> for Arc<EguiState> {
@@ -98,7 +103,12 @@ impl EguiState {
             size: AtomicCell::new((width, height)),
             requested_size: Default::default(),
             open: AtomicBool::new(false),
+            window: None,
         })
+    }
+
+    pub fn handle(&self) -> Option<&RawWindowHandle> {
+        self.window.load()
     }
 
     /// Returns a `(width, height)` pair for the current size of the GUI in logical pixels.
