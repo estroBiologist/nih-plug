@@ -133,7 +133,7 @@ where
         );
 
         self.egui_state.open.store(true, Ordering::Release);
-        self.egui_state.window.store(Some(window.raw_window_handle()));
+        self.egui_state.raw_handle.store(Some(window.raw_window_handle()));
 
         Box::new(EguiEditorHandle {
             egui_state: self.egui_state.clone(),

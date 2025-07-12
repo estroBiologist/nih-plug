@@ -18,7 +18,7 @@ rayon = ["egui-baseview/rayon"]
 [dependencies]
 nih_plug = { path = "..", default-features = false }
 raw-window-handle = "0.5"
-baseview = { git = "https://github.com/RustAudio/baseview.git", rev = "9a0b42c09d712777b2edb4c5e0cb6baf21e988f0" }
+baseview = { git = "https://github.com/estroBiologist/baseview.git" }
 crossbeam = "0.8"
 egui-baseview = { git = "https://github.com/peastman/egui-baseview.git", rev = "6dad67010f4157c1321b25f0a70abd2c6d0e13a4", features = ["windows_keyboard_workaround"] }
 parking_lot = "0.12"
