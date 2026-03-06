@@ -3,6 +3,7 @@
 use crate::egui::Vec2;
 use crate::egui::ViewportCommand;
 use crate::EguiState;
+#[cfg(feature = "opengl")]
 use baseview::gl::GlConfig;
 use baseview::PhySize;
 use baseview::{Size, WindowHandle, WindowOpenOptions, WindowScalePolicy};
