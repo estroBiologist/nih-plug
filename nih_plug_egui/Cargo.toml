@@ -21,7 +21,7 @@ nih_plug = { path = "..", default-features = false }
 raw-window-handle = "0.5"
 baseview = { git = "https://github.com/RustAudio/baseview.git", rev = "3724a00c970a9cd10a3494fa3c37bca66d631bb7" }
 crossbeam = "0.8"
-egui-baseview = { git = "https://github.com/BillyDM/egui-baseview.git", features = ["windows_keyboard_workaround"] }
+egui-baseview = { git = "https://github.com/BillyDM/egui-baseview.git", features = ["windows_keyboard_workaround"], default-features = false }
 parking_lot = "0.12"
 # To make the state persistable
 serde = { version = "1.0", features = ["derive"] }
