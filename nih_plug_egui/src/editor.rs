@@ -85,6 +85,7 @@ where
                     .map(|factor| WindowScalePolicy::ScaleFactor(factor as f64))
                     .unwrap_or(WindowScalePolicy::SystemScaleFactor),
 
+                #[cfg(feature = "opengl")]
                 gl_config: Some(GlConfig {
                     version: (3, 2),
                     red_bits: 8,
