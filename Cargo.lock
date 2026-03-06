@@ -1850,12 +1850,36 @@ dependencies = [
  "baseview 0.1.0 (git+https://github.com/RustAudio/baseview.git?rev=3724a00c970a9cd10a3494fa3c37bca66d631bb7)",
  "copypasta 0.10.1",
  "egui",
+ "egui-wgpu",
  "egui_glow",
  "keyboard-types",
  "log",
  "open 5.3.2",
+ "pollster",
  "raw-window-handle 0.5.2",
+ "raw-window-handle 0.6.2",
  "thiserror 2.0.11",
+ "wgpu",
+]
+
+[[package]]
+name = "egui-wgpu"
+version = "0.32.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "64c7277a171ec1b711080ddb3b0bfa1b3aa9358834d5386d39e83fbc16d61212"
+dependencies = [
+ "ahash",
+ "bytemuck",
+ "document-features",
+ "egui",
+ "epaint",
+ "log",
+ "profiling",
+ "thiserror 1.0.69",
+ "type-map",
+ "web-time",
+ "wgpu",
+ "winit 0.30.12",
 ]
 
 [[package]]
