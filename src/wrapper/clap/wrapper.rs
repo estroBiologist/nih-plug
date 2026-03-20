@@ -696,7 +696,10 @@ impl<P: ClapPlugin> Wrapper<P> {
         // from the vtable functions
         wrapper.clap_plugin.borrow_mut().plugin_data = Arc::as_ptr(&wrapper) as *mut _;
 
-        // The editor also needs to be initialized later so the Async executor can work.
+        // The editor and background thread also need to be initialized later so the Async executor can work.
+        *wrapper.background_thread.borrow_mut() =
+            Some(BackgroundThread::get_or_create(Arc::downgrade(&wrapper)));
+
         *wrapper.editor.borrow_mut() = wrapper
             .plugin
             .lock()
@@ -723,10 +726,6 @@ impl<P: ClapPlugin> Wrapper<P> {
                 }),
             })
             .map(Mutex::new);
-
-        // Same with the background thread
-        *wrapper.background_thread.borrow_mut() =
-            Some(BackgroundThread::get_or_create(Arc::downgrade(&wrapper)));
 
         wrapper
     }
