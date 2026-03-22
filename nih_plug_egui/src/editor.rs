@@ -87,20 +87,7 @@ where
                     .unwrap_or(WindowScalePolicy::SystemScaleFactor),
 
                 #[cfg(feature = "opengl")]
-                gl_config: Some(GlConfig {
-                    version: (3, 2),
-                    red_bits: 8,
-                    blue_bits: 8,
-                    green_bits: 8,
-                    alpha_bits: 8,
-                    depth_bits: 24,
-                    stencil_bits: 8,
-                    samples: None,
-                    srgb: true,
-                    double_buffer: false,
-                    vsync: false,
-                    ..Default::default()
-                }),
+                gl_config: Some(Default::default()),
             },
             Default::default(),
             state,

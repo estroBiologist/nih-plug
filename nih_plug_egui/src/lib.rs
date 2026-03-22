@@ -37,7 +37,6 @@ pub mod widgets;
 /// See [`EguiState::from_size()`].
 pub fn create_egui_editor<T, B, U>(
     egui_state: Arc<EguiState>,
-    scaling_factor: Option<f32>,
     user_state: T,
     build: B,
     update: U,
@@ -59,7 +58,7 @@ where
         #[cfg(target_os = "macos")]
         scaling_factor: AtomicCell::new(None),
         #[cfg(not(target_os = "macos"))]
-        scaling_factor: AtomicCell::new(scaling_factor),
+        scaling_factor: AtomicCell::new(Some(1.0)),
     }))
 }
 
