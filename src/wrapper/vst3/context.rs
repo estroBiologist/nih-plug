@@ -168,16 +168,18 @@ impl<P: Vst3Plugin> GuiContext for WrapperGuiContext<P> {
                     // FIXME: So this doesn't work for REAPER, because they just silently stop
                     //        processing audio when you bypass the plugin. Great. We can add a time
                     //        based heuristic to work around this in the meantime.
-                    if !self.inner.is_processing.load(Ordering::SeqCst) {
-                        self.inner.set_normalized_value_by_hash(
-                            *hash,
-                            normalized,
-                            self.inner
-                                .current_buffer_config
-                                .load()
-                                .map(|c| c.sample_rate),
-                        );
-                    }
+                    //
+                    // Cubase VST3 also does not reliably echo instant click/toggle edits back,
+                    // leaving bool/enum parameters stuck unless we commit the GUI-side change
+                    // here first. This is a broad workaround and may need to be narrowed.
+                    self.inner.set_normalized_value_by_hash(
+                        *hash,
+                        normalized,
+                        self.inner
+                            .current_buffer_config
+                            .load()
+                            .map(|c| c.sample_rate),
+                    );
 
                     handler.perform_edit(*hash, normalized as f64);
                 }
